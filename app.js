@@ -1,13 +1,19 @@
 var bodyParser   =  require('body-parser'),
-    express      =  require('express'),
-    mongoose     =  require('mongoose');
+    express      =  require('express');
 
+const dotenv = require('dotenv');
+const path = require('path');
+// var seedDB = require("./seed");
+
+// Load environment variables from .env file
+dotenv.config({ path: path.join(__dirname, '.env') });
+
+const mongoose = require('./dbcontext');
+    
 var app = express();
 var methodOverride = require('method-override');
 
 var expressSanitizer = require("express-sanitizer");
-mongoose.connect('mongodb://localhost/blog_app');
-
 var blogSchema = new mongoose.Schema({
     title : String,
     image : String,
